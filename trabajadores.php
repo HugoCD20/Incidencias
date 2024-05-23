@@ -78,22 +78,26 @@
 </head>
 <body>
 <div class="container">
-<h1>Seccion de trabajadores</h1>
-<form action="recibeformulario.php" method="post" style="text-align:center;" enctype="multipart/form-data">
+<h1>Registrar Trabajador</h1>
+<form action="validar-registro.php" method="post" style="text-align:center;" enctype="multipart/form-data">
      <div class="form-group">
             <label for="Nombre">Nombre:</label>
-            <input type="text" id="titulo" name="nombre" required>
+            <input type="text" id="nombre" name="nombre" required>
        </div>
      <div class="form-group">
             <label for="Apellido">Apellido:</label>
-            <input type="text" id="titulo" name="apellido" required>
+            <input type="text" id="apellido" name="apellido" required>
+       </div>
+       <div class="form-group">
+            <label for="Contraseña">Contraseña:</label>
+            <input type="text" id="Contraseña" name="Contraseña" required>
        </div>
        <div class="form-group">
             <label for="rol">Rol:</label>
             <select id="rol" name="rol" required>
                 <option value="trabajador">Trabajador</option>
                 <option value="Tecnico">Tecnico</option>
-                <option value="resolución">Resolución</option>           
+                <option value="resolución">Cordinador</option>           
                 </select>
         </div>
       <div class="form-group">
