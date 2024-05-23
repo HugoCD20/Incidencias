@@ -6,7 +6,7 @@ $rol=$_POST["rol"];
 $datos = [
     "nombre" => $nombre,
     "apellido" => $apellido,
-    "contraseña" => $Contraseña,
+    "contrasena" => $Contraseña,
     "rol"=>$rol
 ];
 $datos=json_encode($datos);
