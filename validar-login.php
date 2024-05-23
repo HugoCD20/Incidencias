@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('conexion.php');
 $usuario=$_POST["usuario"];
 $contraseña = hash('sha256', $_POST["contraseña"]);
@@ -10,7 +11,9 @@ if ($consulta->rowCount() > 0) {
     while ($registro = $consulta->fetch(PDO::FETCH_ASSOC)) {
         $datos = json_decode($registro['trabajador'], true);
         if($contraseña==$datos["contrasena"]){
-            header("location: home.html");
+            $_SESSION["id"]=$registro["id_trabajador"];
+            $_SESSION["rol"]=$datos["rol"];
+            header("location: home.php");
         }
     }
 }
