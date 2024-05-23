@@ -16,5 +16,5 @@ VALUES (:datos)";
 $consulta = $conexion->prepare($query);
 $consulta->bindParam(':datos', $datos);
 $consulta->execute();
-header("location: home.html");
+header("location: home.php");
 ?>

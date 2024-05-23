@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -105,7 +108,7 @@
         header input[type="submit"] {
     background-color: #922B21;
     color: white;
-    width: 90px; /* ajusta el ancho según tu preferencia */
+    width: 140px; /* ajusta el ancho según tu preferencia */
     height: 40px; /* ajusta la altura según tu preferencia */
     font-size: 18px; /* ajusta el tamaño de la fuente según tu preferencia */
      border: none;
@@ -122,9 +125,21 @@
 </head>
 <body>
     <div class="container">
-        <header>
-            <a href="login.html"><input type="submit" value="Login"></a>
-        </header>
+      <header>
+    <?php
+        if (isset($_SESSION['id'])) {
+            if ($_SESSION["role"] == "Cordinador") {
+                echo "<a href='trabajadores.php'><input type='submit' value='Registrar'></a>";
+                echo "&nbsp;"; 
+                echo "<a href='cerrar_sesion.php'><input type='submit' value='Cerrar sesión'></a>";
+            } else {
+                echo "<a href='cerrar_sesion.php'><input type='submit' value='Registrar'></a>";
+            }
+        }else{
+            echo "<a href='login.php'><input type='submit' value='Login'></a>";
+        }
+    ?>
+</header>
         <main>
             <h1>Incidencias</h1>
             <table>

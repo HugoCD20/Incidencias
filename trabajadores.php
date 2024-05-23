@@ -97,7 +97,7 @@
             <select id="rol" name="rol" required>
                 <option value="trabajador">Trabajador</option>
                 <option value="Tecnico">Tecnico</option>
-                <option value="resolución">Cordinador</option>           
+                <option value="Cordinador">Cordinador</option>           
                 </select>
         </div>
       <div class="form-group">
