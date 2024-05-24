@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -96,42 +97,38 @@
 <body>
 <div class="container">
 <h1>Pruebas</h1>
-<form action="recibeformulario.php" method="post" style="text-align:center;" enctype="multipart/form-data">
+            <?php
+                include("funciones.php");
+                $id_incidencia=$_POST["id_incidencia"];
+                $datos=ConsultarIncidencia($id_incidencia);
+                
+            ?>
+<form action="validar-prueba.php" method="post" style="text-align:center;" enctype="multipart/form-data">
      <div class="form-group">
             <label for="Nombre">Titulo:</label>
-            <p>Parrafo</p>
+            <p><?php echo $datos["titulo"]?></p>
        </div>
      <div class="form-group">
             <label for="Apellido">Descripción:</label>
-             <p>Parrafo</p>
+             <p><?php echo $datos["descripcion"]?></p>
        </div>
         <div class="form-group">
             <label for="descripcion">Resultados de las pruebas:</label>
-            <textarea id="descripcion" name="descripcion" required></textarea>
+            <textarea id="descripcion" name="resultado" required></textarea>
         </div>
 
-    <div class="mostra">
-<div class="datos">
-<div class="form-group">
- <p>fecha</p> 
- </div> 
-<div class="form-group">
- <p>nombre</p> 
- </div>
-</div>
- <div class="form-group">
- <p>descripcion</p> 
-</div>
- </div>
+        <?php
+       Consultarmensajes($id_incidencia);
+   ?>
     <div class="form-group1">
       <div class="form-group">
-            <button type="submit">Agregar</button>
+            <button type="submit" id="opcion" name="opcion" value="agregar">cancelar</button>
      </div>
      <div class="form-group">
-            <button type="submit">No pasa</button>
+            <button type="submit" id="opcion" name="opcion" value="no_pasa">No pasa</button>
      </div>
      <div class="form-group">
-            <button type="submit">Pasa</button>
+            <button type="submit" id="opcion" name="opcion" value="pasa">Pasa</button>
      </div>
  </div>
     </form>

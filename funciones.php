@@ -63,7 +63,7 @@ function ConsultarIncidencia($id_incidencia){
                 $datos = json_decode($registro['incidencia'], true);
                 
             }
-        }
+             }
     return $datos;
 }
 function Consultarmensajes($id_incidencia){
@@ -80,10 +80,12 @@ function Consultarmensajes($id_incidencia){
                     <div class='form-group2'>
                     <label for='Nombre'>".$datos."</label>
                 </div>
-        </div>
+        </div>s
         <div class='form-group'>
                 <label for='Apellido'>Comentarios</label>
         </div>";
+
+        
     if ($consulta2->rowCount() > 0) {
         while ($registro2 = $consulta2->fetch(PDO::FETCH_ASSOC)) {
             $id_incidencia=$registro2["id_mensaje"];

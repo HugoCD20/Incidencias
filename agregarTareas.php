@@ -1,6 +1,4 @@
-<?php
 
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -107,61 +105,35 @@
 </head>
 <body>
     <div class="container">
-        <h1>Tarea</h1>
-        
-            <?php
+        <h1>Agregar Tareas</h1>
+        <?php
                 include("funciones.php");
                 $id_incidencia=$_POST["id_incidencia"];
                 $datos=ConsultarIncidencia($id_incidencia);
-
+                
             ?>
+        <form action="validar-ntarea.php" method="POST">
+        <input type="hidden" name="id_incidencia" value="<?php echo $id_incidencia; ?>">
             <!-- Campo de Título (Solo lectura) -->
             <div class="form-group">
                 <label for="titulo">Título:</label>
-                <input type="text" id="titulo" name="titulo" value="<?php echo $datos["titulo"]?>" readonly>
+                <input type="text" id="titulo" name="titulo">
             </div>
             <!-- Campo de Descripción (Solo lectura) -->
             <div class="form-group">
                 <label for="descripcion">Descripción:</label>
-                <textarea id="descripcion" name="descripcion" readonly><?php echo $datos["descripcion"]?></textarea>
+                <textarea id="descripcion" name="descripcion" ></textarea>
             </div>
-            <form action="pruebas.php" method="POST">
-            <?php
-                include("conexion.php");
-                $query="SELECT * FROM tareas where id_incidencia=:id_incidencia";
-                $consulta=$conexion->prepare($query);
-                $consulta->bindParam(':id_incidencia', $id_incidencia);
-                $consulta->execute();
-                if ($consulta->rowCount() > 0) {
-                    while ($registro = $consulta->fetch(PDO::FETCH_ASSOC)) {
-                        $datos = json_decode($registro['tarea'], true);
-                        echo " <div class='botones'>
-                        <div class='form-group'>
-                            <label for='descripcion'>Tarea:</label>
-                            <input type='text' id='tarea' name='tarea' disabled='disabled' placeholder='".$datos["titulo"]."'>
-                        </div><input type='hidden' name='id_incidencia' value='". $id_incidencia."'>
-
-                        <!-- Botones de Enviar y Cancelar -->
-                        <div class='form-group' style='display: flex;'>
-                            <button type='submit' style='width: 90px;' name='accion' value='ver'>Ver</button>
-                        </div>
-                        <div class='form-group' style='display: flex;'>
-                            <button type='submit' style='width: 100px;' name='accion' value='". $registro['id_tarea']."'>Finalizado</button>
-                        </div>
-                    </div>
-                ";
-                        
-                    }
-                }
-            ?>
-            </form>
-             <form action="agregarTareas.php" method="POST">
-                <div class="form-group button-group">
-                    <input type="hidden" name="id_incidencia" value="<?php echo $id_incidencia; ?>">
-                    <button type="submit">Agregar Nueva tarea</button>
-                </div>
-            </form>
-
+               <div class="botones">
+                 <!-- Botones de Enviar y Cancelar -->
+             <div class="form-group" style="display: flex;">
+                <button type="submit" style="width: 90px;" name="accion" value="cancelar">Cancelar</button>
+            </div>
+             <div class="form-group" style="display: flex;">
+                <button type="submit" style="width: 100px;" name="accion" value="enviar">Enviar</button>
+            </div>
+            </div>
+        </form>
     </div>
 </body>
 </html>
