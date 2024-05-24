@@ -3,6 +3,7 @@
     
     
     echo $_SESSION['id'];
+    $id=$_SESSION['id'];
     $titulo=$_POST["titulo"];
     $descripcion=$_POST["descripcion"];
     $evidencias=$_POST["evidencias"];
@@ -11,7 +12,7 @@
         "titulo" => $titulo,
         "descripcion" => $descripcion,
         "evidencias"=>$evidencias,
-        "evidencia"=>1
+        "etapa_actual"=>1
     ];
 
 
@@ -21,7 +22,7 @@
     $query = "INSERT INTO incidencias(id_trabajador,incidencia)  VALUES (:id_trabajador,:datos)";
 
     $consulta = $conexion->prepare($query);
-    $consulta->bindParam(':id_trabajador', $_SESSION['id']);
+    $consulta->bindParam(':id_trabajador', $id);
     $consulta->bindParam(':datos', $datos);
     $consulta->execute();
     header("location: home.php");

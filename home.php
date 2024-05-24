@@ -159,14 +159,33 @@ text-align: center;}
                 <tr>
                     <td>#343a40</td>
                     <td>Edgar Vivar Najera</td>
-                    <td><form action="asignacion.php" method="get"><button>Asignado</button><button>Ver detalles ></button></form></td>
+                    <td><form action="asignacion.php" method="get">
+                            <?php
+                                if(isset($_SESSION["rol"])){
+                                    if($_SESSION["rol"]=="Cordinador"){
+                                        echo "<button name='botones' value='asignar'>Asignado</button>";
+                                    }else{
+                                       // echo "<p class='boton'>asignar</p>";
+                                        //echo "<button name='botones' value='asignar'>Asignado</button>";
+                                        echo "<div class='form-group'>";
+                                       echo " <input type='button' value='asignar' disabled>";
+                                        //echo "<button name='button' disabled>Click me</button>";
+                                        echo "</div>";
+                                    }
+                                }else{
+                                    echo "<p class='boton'>asignar</p>";
+                                }
+                            ?>
+                            <button name="botones" value="ver">Ver detalles ></button>
+                        </form>
+                    </td>
                 </tr>
             </table>
         </main>
         <br>
         <br>
         <div class="form-group">
-            <center><button type="submit">Agregar incendencia</button><center>
+            <center><a href="agregarIncidencia.php"><button type="submit">Agregar incendencia</button></a><center>
      </div>
 
         <div class="footer">

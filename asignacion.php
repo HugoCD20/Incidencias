@@ -1,3 +1,4 @@
 <?php
-$decision=
+$decision=$_GET["botones"];
+echo $decision;
 ?>
