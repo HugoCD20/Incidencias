@@ -1,4 +1,8 @@
 <?php
+session_start();
+?>
+
+<?php
     include("funciones.php");
     $id_incidencia=$_POST["id_incidencia"];
     $id_trabajador=$_POST["mensaje"];

@@ -1,4 +1,8 @@
 <?php
+session_start();
+?>
+
+<?php
 
 function detalles($id_incidencia){
     include("conexion.php");

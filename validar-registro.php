@@ -1,4 +1,8 @@
 <?php
+session_start();
+?>
+
+<?php
 $nombre=$_POST["nombre"];
 $apellido=$_POST["apellido"];
 $Contraseña= hash('sha256', $_POST["Contraseña"]);
