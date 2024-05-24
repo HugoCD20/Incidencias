@@ -205,7 +205,7 @@ text-align: center;}
                 if(isset($_SESSION["id"])){
                     echo "<center><a href='agregarIncidencia.php'><button type='submit'>Agregar incendencia</button></a><center>";
                 }else{
-                    echo "<center><a href='login.php'><button type='submit'>Agregar incendencia</button></a><center> ";
+                    echo "<center><a href='login.php'><button type='submit'>Agregar incendencia</button></a><center>";
                 }
             ?>
      </div>

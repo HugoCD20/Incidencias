@@ -1,9 +1,12 @@
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Lectura</title>
+    <title>Asignación</title>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -49,7 +52,7 @@
         }
         .form-group textarea {
             resize: vertical;
-            height: 120px;
+            height: 100px;
         }
         .form-group input[readonly],
         .form-group textarea[readonly] {
@@ -72,6 +75,19 @@
             font-weight: 500;
             transition: background-color 0.3s ease;
         }
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .form-group select option {
+            padding: 6px;
+        }
+       
+        
         .form-group button:hover {
             background-color: #D98880;
         }
@@ -79,31 +95,52 @@
         .form-group button.cancelar:hover {
             background-color: #D98880;
         }
+
+        .botones{
+          width: -400px;
+          display: flex;
+    align-items: flex-end;
+    width: -400px;
+    justify-content: space-between;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Comentario</h1>
-        <form action="validar-comentario.php" method="post">
+        <h1>Tarea</h1>
+        <form>
+            <?php
+                include("funciones.php");
+                $id_incidencia=$_POST["id_incidencia"];
+                $datos=ConsultarIncidencia($id_incidencia);
+
+            ?>
             <!-- Campo de Título (Solo lectura) -->
             <div class="form-group">
                 <label for="titulo">Título:</label>
-                <input type="text" id="titulo" name="titulo" value="Valor de la base de datos" readonly>
+                <input type="text" id="titulo" name="titulo" value="<?php echo $datos["titulo"]?>" readonly>
             </div>
             <!-- Campo de Descripción (Solo lectura) -->
             <div class="form-group">
                 <label for="descripcion">Descripción:</label>
-                <textarea id="descripcion" name="descripcion" readonly>Valor de la base de datos</textarea>
+                <textarea id="descripcion" name="descripcion" readonly><?php echo $datos["descripcion"]?></textarea>
             </div>
-            <!-- Campo de Mensaje -->
-            <div class="form-group">
-                <label for="mensaje">Mensaje:</label>
-                <textarea id="mensaje" name="mensaje" placeholder="mensaje sobre lo que pasó con tu código"></textarea>
-            </div>
-            <!-- Botones de Enviar y Cancelar -->
-            <div class="form-group button-group">
-                <button type="submit">Enviar</button>
-                <button type="submit">Cancelar</button>
+               <div class="botones">
+                    <div class="form-group">
+                        <label for="descripcion">Tarea:</label>
+                        <input type="text" id="tarea" name="tarea" disabled='disabled' placeholder='Tarea 1'>
+                    </div>
+                    <!-- Botones de Enviar y Cancelar -->
+                    <div class="form-group" style="display: flex;">
+                        <button type="submit" style="width: 90px;">Ver</button>
+                    </div>
+                    <div class="form-group" style="display: flex;">
+                        <button type="submit" style="width: 100px;">Finalizado</button>
+                    </div>
+                </div>
+            
+          <div class="form-group button-group">
+                <button type="submit">Agregar Nueva tarea</button>
             </div>
         </form>
     </div>

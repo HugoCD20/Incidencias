@@ -1,4 +1,5 @@
 <?php
+    include("funciones.php");
     $id_incidencia=$_POST["id_incidencia"];
     $id_trabajador=$_POST["mensaje"];
 
@@ -9,5 +10,6 @@
     $consulta->bindParam(':id_incidencia', $id_incidencia);
     $consulta->bindParam(':id_trabajador', $id_trabajador);
     $consulta->execute();
+    ActualizarEtapa($id_incidencia);
     header("location: home.php");
 ?>

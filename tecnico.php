@@ -1,3 +1,8 @@
+<?php
+session_start();
+ $id_tecnico= $_SESSION['id'];
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -85,29 +90,71 @@
         .logout-button:hover {
             background-color: #c0392b;
         }
+        .btn {
+            margin-top: 10px;
+            margin-right: 5px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 14px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
     </style>
 </head>
 <body>
 
+
 <div class="container">
-    <h1>Técnico Tareas</h1>
-    <div class="welcome">
+    <h1>Técnico Tareas </h1>
+    <div class="welcome to ">
         Bienvenido
     </div>
 
     <table>
         <tr>
-            <th>Tareas</th>
+            <th>Incidencias Asignadas</th>
         </tr>
-        <tr>
-            <td><a href="tareaProceso.html">Tarea 1</a></td>
-        </tr>
-        <tr>
-            <td><a href="tareaProceso.html">Tarea 2</a></td>
-        </tr>
-        <tr>
-            <td><a href="tareaProceso.html">Tarea 3</a></td>
-        </tr>
+        <?php
+        include("conexion.php");
+
+        $query = "SELECT incidencias.id_incidencia, incidencias.incidencia FROM asignacion  JOIN incidencias ON asignacion.id_incidencia = incidencias.id_incidencia  WHERE asignacion.id_tecnico = :id_tecnico";
+
+        $consulta = $conexion->prepare($query);
+        $consulta->bindParam(':id_tecnico', $id_tecnico, PDO::PARAM_INT);
+        $consulta->execute();
+
+        if ($consulta->rowCount() > 0) {
+            while ($registro = $consulta->fetch(PDO::FETCH_ASSOC)) {
+                $datos = json_decode($registro['incidencia'], true);
+                echo "<tr>
+                        <td>".$datos['titulo']." - ".$datos['descripcion']."<br>
+                        <form action='comentarios.php' method='POST' style='display: inline;'>
+                            <input type='hidden' name='id_incidencia' value='".$registro['id_incidencia']."'>
+                            <button type='submit' class='btn'>Enviar Mensaje</button>
+                        </form>
+                        <form action='tareas.php' method='POST' style='display: inline;'>
+                            <input type='hidden' name='id_incidencia' value='".$registro['id_incidencia']."'>
+                            <button type='submit' class='btn btn-secondary'>Resolver</button>
+                        </form>
+                        </td>
+                      </tr>";
+            }
+        }
+
+        
+        ?>
     </table>
 
     <a href="cerrar_sesion.php"><button class="logout-button">Cerrar sesión</button></a>
