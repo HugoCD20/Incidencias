@@ -1,4 +1,6 @@
 <?php
 $decision=$_GET["botones"];
-echo $decision;
+if($decision=="asignar"){
+    include("asignar.php");
+}
 ?>

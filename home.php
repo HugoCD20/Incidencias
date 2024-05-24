@@ -171,9 +171,10 @@ text-align: center;}
                             while ($registro2 = $consulta2->fetch(PDO::FETCH_ASSOC)) {
                                 $datos = json_decode($registro2['trabajador'], true);
                                 echo "<tr>
-                                <td>".$registro['id_trabajador']."</td>
+                                <td>".$registro['id_incidencia']."</td>
                                 <td>".$datos["nombre"]." ".$datos["apellido"]."</td>
                                 <td><form  action='asignacion.php' method='get'>";
+                                echo "<input type='hidden' name='id_incidencia' value='".$registro["id_incidencia"]."'>";
                                     if(isset($_SESSION["rol"])){
                                         if($_SESSION["rol"]=="Cordinador"){
                                         echo "<button name='botones' value='asignar'>Asignado</button>";
@@ -201,9 +202,12 @@ text-align: center;}
         <br>
         <div class="form-group">
             <?php
-                if(isset)
+                if(isset($_SESSION["id"])){
+                    echo "<center><a href='agregarIncidencia.php'><button type='submit'>Agregar incendencia</button></a><center>";
+                }else{
+                    echo "<center><a href='login.php'><button type='submit'>Agregar incendencia</button></a><center>";
+                }
             ?>
-            <center><a href="agregarIncidencia.php"><button type="submit">Agregar incendencia</button></a><center>
      </div>
 
         <div class="footer">
