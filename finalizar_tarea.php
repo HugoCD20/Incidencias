@@ -2,9 +2,10 @@
 session_start();
 
 
+include('conexion.php');
 
     $id_tecnico=$_SESSION["id"];
-    $id_tarea=$_POST["id_tarea"];
+    $id_tarea=$_POST["accion"];
     $id_incidencia=$_POST["id_incidencia"];
 
 
@@ -17,20 +18,18 @@ session_start();
         if ($consulta->rowCount() > 0) {
             while ($registro = $consulta->fetch(PDO::FETCH_ASSOC)) {
                 $datos = json_decode($registro['tarea'], true);
-                $datos = [
+                $datos2 = [
                     "titulo" => $datos["titulo"],
                     "descripcion" => $datos["descripcion"],
-                    "Estado"=>"finalizado";
+                    "Estado"=>"finalizado"
                 ];
-                $datos=json_encode($datos);
-                include('conexion.php');
+                $datos3=json_encode($datos2);
 
                 $query = "UPDATE tareas SET tarea=:tarea where id_tarea=:id_tarea";
 
                 $consulta = $conexion->prepare($query);
-                $consulta->bindParam(':id_incidencia', $id_incidencia);
-                $consulta->bindParam(':tarea', $datos);
-                $consulta->bindParam(':id_tecnico', $id_tecnico);
+                $consulta->bindParam(':tarea', $datos3);
+                $consulta->bindParam(':id_tarea', $id_tarea);
                 $consulta->execute();
                 header("location: tecnico.php");
             }

@@ -4,11 +4,11 @@ include("functions.php");
 
     $accion=$_POST["opcion"];
     $id_tecnico=$_SESSION["id"];
-    $id_mensaje=$_POST["resultado"]
+    $id_mensaje=$_POST["resultado"];
     $fecha = date("Y-m-d H:i:s");
 
     if($accion!="pasa"){
-        header("location: tecnico.php")
+        header("location: tecnico.php");
         exit();
     }
     include('conexion.php');

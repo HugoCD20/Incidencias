@@ -129,12 +129,17 @@
             <?php
                 include("conexion.php");
                 $query="SELECT * FROM tareas where id_incidencia=:id_incidencia";
+                /*$query="SELECT * FROM tareas where id_incidencia=:id_incidencia";*/
                 $consulta=$conexion->prepare($query);
                 $consulta->bindParam(':id_incidencia', $id_incidencia);
                 $consulta->execute();
+                $bandera=TRUE;
                 if ($consulta->rowCount() > 0) {
                     while ($registro = $consulta->fetch(PDO::FETCH_ASSOC)) {
                         $datos = json_decode($registro['tarea'], true);
+                        if($datos['Estado']=='activo'){
+                            $bandera=FALSE;
+                       
                         echo " <div class='botones'>
                         <div class='form-group'>
                             <label for='descripcion'>Tarea:</label>
@@ -144,23 +149,42 @@
                         <!-- Botones de Enviar y Cancelar -->
                         <div class='form-group' style='display: flex;'>
                             <button type='submit' style='width: 90px;' name='accion' value='ver'>Ver</button>
-                        </div>
-                        <div class='form-group' style='display: flex;'>
+                        </div></form>
+                        
+                        <form action='finalizar_tarea.php'method='POST'>
+                            <div class='form-group button-group'>
+                            
+                    <input type='hidden' name='id_incidencia' value='". $id_incidencia."'>
                             <button type='submit' style='width: 100px;' name='accion' value='". $registro['id_tarea']."'>Finalizado</button>
-                        </div>
+                        
+                            </div>
+                        </form>
+
+                        
                     </div>
                 ";
-                        
+            }   
                     }
                 }
             ?>
-            </form>
+            
              <form action="agregarTareas.php" method="POST">
                 <div class="form-group button-group">
                     <input type="hidden" name="id_incidencia" value="<?php echo $id_incidencia; ?>">
                     <button type="submit">Agregar Nueva tarea</button>
                 </div>
             </form>
+            <?php
+            if($bandera){
+                echo "<form action='pruebas.php' method='POST'>
+                <div class='form-group button-group'>
+                    <input type='hidden' name='id_incidencia' value='$id_incidencia'>
+                    <button type='submit'>Finalizar</button>
+                </div>
+            </form>";
+            }
+            
+            ?>
 
     </div>
 </body>

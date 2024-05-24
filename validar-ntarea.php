@@ -14,7 +14,7 @@ $id_tecnico=$_SESSION["id"];
     $datos = [
         "titulo" => $titulo,
         "descripcion" => $descripcion,
-        "Estado"=>"activo";
+        "Estado"=>"activo"
     ];
 
 
