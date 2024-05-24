@@ -147,9 +147,7 @@ session_start();
                         </div><input type='hidden' name='id_incidencia' value='". $id_incidencia."'>
 
                         <!-- Botones de Enviar y Cancelar -->
-                        <div class='form-group' style='display: flex;'>
-                            <button type='submit' style='width: 90px;' name='accion' value='ver'>Ver</button>
-                        </div></form>
+                        
                         
                         <form action='finalizar_tarea.php'method='POST'>
                             <div class='form-group button-group'>
