@@ -1,9 +1,13 @@
-<!DOCTYPE html>
+<?php
+    session_start();
+
+?>
+    <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loguearse</title>
+    <title>Registrar Incidencia</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -76,18 +80,22 @@
 <body>
 
 <div class="container">
-    <h1>Iniciar Sesion</h1>
-    <form action="validar-login.php" method="post">
+    <h1>Registrar Incidencia</h1>
+    <form class="Formulario" method="post" action="agregar_incidencia.php">
         <div class="form-group">
-            <label for="usuario">ID de trabajador:</label>
-            <input type="text" id="usuario" name="usuario" required>
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" required>
         </div>
         <div class="form-group">
-            <label for="titulo">Contraseña:</label>
-            <input type="password" id="contraseña" name="contraseña" required>
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" required></textarea>
         </div>
         <div class="form-group">
-            <button type="submit">Ingresar</button>
+            <label for="evidencias">Evidencias:</label>
+            <input type="file" id="evidencias" name="evidencias" multiple>
+        </div>
+        <div class="form-group">
+            <button type="submit">Registrar Incidencia</button>
         </div>
     </form>
 </div>

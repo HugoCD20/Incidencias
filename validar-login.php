@@ -13,7 +13,14 @@ if ($consulta->rowCount() > 0) {
         if($contraseña==$datos["contrasena"]){
             $_SESSION["id"]=$registro["id_trabajador"];
             $_SESSION["rol"]=$datos["rol"];
-            header("location: home.php");
+            if($datos["rol"]=="Tecnico"){
+                header("location: tecnico.php");
+                exit();
+            }else{
+                header("location: home.php");
+                exit();
+            }
+            
         }
     }
 }

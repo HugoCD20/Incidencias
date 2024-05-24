@@ -104,6 +104,7 @@ session_start();
         td button:hover {
             background-color: #5a6268;
         }
+
         
         header input[type="submit"] {
     background-color: #922B21;
@@ -121,6 +122,13 @@ session_start();
     padding: 6px;
     width: 98%;
 }
+.form-group{
+    width: 190px; /* ajusta el ancho según tu preferencia */
+    height: 50px; /* ajusta la altura según tu preferencia */
+    font-size: 18px;
+    align-items: center;
+display: table;
+text-align: center;}
     </style>
 </head>
 <body>
@@ -157,17 +165,11 @@ session_start();
         </main>
         <br>
         <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-
+        <div class="form-group">
+            <center> <a href="agregarIncidencia.php"><button type="submit">Agregar incendencia</button></a><center>
+     </div>
 
         <div class="footer">
-
             <footer>
                 <p>Copyright © 2024</p>
             </footer>
