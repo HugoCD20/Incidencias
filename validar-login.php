@@ -21,8 +21,15 @@ if ($consulta->rowCount() > 0) {
                 exit();
             }
             
+        }else{
+            header("location: login.php");
+            exit();
         }
     }
+}else{
+    header("location: login.php");
+    exit();
+
 }
 
 ?>

@@ -183,20 +183,38 @@ text-align: center;}
                                             if($datos2["etapa_actual"]==5){
                                                 echo "<button name='botones'disabled='disabled' value='asignar'>Finalizado</button>";
                                             }else{
-                                                echo "<button name='botones' value='asignar'>Asignado</button>";
+                                                echo "<button name='botones' value='asignar'>";
+                                                if($datos2["etapa_actual"]==2){
+                                                    echo "Asignado";
+                                                }else{
+                                                    echo "Sin Asignado";
+                                                }
+                                                echo"</button>";
                                             }
                                         
                                         }else{
                                             if($datos2["etapa_actual"]==5){
                                                 echo "<button name='botones' value='asignar' disabled='disabled'>Finalizado</button>";
                                             }else{
-                                                echo "<button name='botones' value='asignar' disabled='disabled'>Asignado</button>";
+                                                echo "<button name='botones' value='asignar'>";
+                                                if($datos2["etapa_actual"]==2){
+                                                    echo "Asignado";
+                                                }else{
+                                                    echo "Sin Asignado";
+                                                }
+                                                echo"</button>";
                                             }
 
                                             
                                         }
                                     }else{
-                                        echo "<button name='botones' value='asignar' disabled='disabled'>Asignado</button>";
+                                        echo "<button name='botones' value='asignar'>";
+                                        if($datos2["etapa_actual"]==2){
+                                            echo "Asignado";
+                                        }else{
+                                            echo "Sin Asignado";
+                                        }
+                                        echo"</button>";
                                     }                         
                                         echo"
                                         <button name='botones' value='ver'>Ver detalles ></button>
