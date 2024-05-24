@@ -156,35 +156,53 @@ text-align: center;}
                     <th>Trabajador</th>
                     <th>Estado</th>
                 </tr>
-                <tr>
-                    <td>#343a40</td>
-                    <td>Edgar Vivar Najera</td>
-                    <td><form action="asignacion.php" method="get">
-                            <?php
-                                if(isset($_SESSION["rol"])){
-                                    if($_SESSION["rol"]=="Cordinador"){
+                <?php
+                include("conexion.php");
+                $query="SELECT * FROM incidencias";
+                $consulta=$conexion->prepare($query);
+                $consulta->execute();
+                if ($consulta->rowCount() > 0) {
+                    while ($registro = $consulta->fetch(PDO::FETCH_ASSOC)) {
+                        $query2="SELECT* FROM trabajadores where id_trabajador=:id_trabajador";
+                        $consulta2=$conexion->prepare($query2);
+                        $consulta2->bindParam(':id_trabajador', $registro["id_trabajador"]);
+                        $consulta2->execute();
+                        if ($consulta2->rowCount() > 0) {
+                            while ($registro2 = $consulta2->fetch(PDO::FETCH_ASSOC)) {
+                                $datos = json_decode($registro2['trabajador'], true);
+                                echo "<tr>
+                                <td>".$registro['id_trabajador']."</td>
+                                <td>".$datos["nombre"]." ".$datos["apellido"]."</td>
+                                <td><form  action='asignacion.php' method='get'>";
+                                    if(isset($_SESSION["rol"])){
+                                        if($_SESSION["rol"]=="Cordinador"){
                                         echo "<button name='botones' value='asignar'>Asignado</button>";
+                                        }else{
+                                            echo "<button name='botones' value='asignar' disabled='disabled'>Asignado</button>";
+                                        }
                                     }else{
-                                       // echo "<p class='boton'>asignar</p>";
-                                        //echo "<button name='botones' value='asignar'>Asignado</button>";
-                                        echo "<div class='form-group'>";
-                                       echo " <input type='button' value='asignar' disabled>";
-                                        //echo "<button name='button' disabled>Click me</button>";
-                                        echo "</div>";
-                                    }
-                                }else{
-                                    echo "<p class='boton'>asignar</p>";
-                                }
-                            ?>
-                            <button name="botones" value="ver">Ver detalles ></button>
-                        </form>
-                    </td>
-                </tr>
+                                        echo "<button name='botones' value='asignar' disabled='disabled'>Asignado</button>";
+                                    }                         
+                                        echo"
+                                        <button name='botones' value='ver'>Ver detalles ></button>
+                                    </form>
+                                </td>
+                            </tr>";
+                            }
+                        }
+                    }
+                }
+                
+                
+                ?>
             </table>
         </main>
         <br>
         <br>
         <div class="form-group">
+            <?php
+                if(isset)
+            ?>
             <center><a href="agregarIncidencia.php"><button type="submit">Agregar incendencia</button></a><center>
      </div>
 
