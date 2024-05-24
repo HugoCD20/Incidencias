@@ -138,6 +138,7 @@ session_start();
         if ($consulta->rowCount() > 0) {
             while ($registro = $consulta->fetch(PDO::FETCH_ASSOC)) {
                 $datos = json_decode($registro['incidencia'], true);
+                if($datos["etapa_actual"]<5){
                 echo "<tr>
                         <td>".$datos['titulo']." - ".$datos['descripcion']."<br>
                         <form action='comentarios.php' method='POST' style='display: inline;'>
@@ -150,6 +151,7 @@ session_start();
                         </form>
                         </td>
                       </tr>";
+                    }
             }
         }
 

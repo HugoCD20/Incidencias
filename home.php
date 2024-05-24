@@ -158,6 +158,7 @@ text-align: center;}
                 </tr>
                 <?php
                 include("conexion.php");
+                include("funciones.php");
                 $query="SELECT * FROM incidencias";
                 $consulta=$conexion->prepare($query);
                 $consulta->execute();
@@ -170,16 +171,29 @@ text-align: center;}
                         if ($consulta2->rowCount() > 0) {
                             while ($registro2 = $consulta2->fetch(PDO::FETCH_ASSOC)) {
                                 $datos = json_decode($registro2['trabajador'], true);
+                                $datos2=ConsultarIncidencia($registro["id_incidencia"]);
                                 echo "<tr>
                                 <td>".$registro['id_incidencia']."</td>
                                 <td>".$datos["nombre"]." ".$datos["apellido"]."</td>
+
                                 <td><form  action='asignacion.php' method='get'>";
                                 echo "<input type='hidden' name='id_incidencia' value='".$registro["id_incidencia"]."'>";
                                     if(isset($_SESSION["rol"])){
                                         if($_SESSION["rol"]=="Cordinador"){
-                                        echo "<button name='botones' value='asignar'>Asignado</button>";
+                                            if($datos2["etapa_actual"]==5){
+                                                echo "<button name='botones'disabled='disabled' value='asignar'>Finalizado</button>";
+                                            }else{
+                                                echo "<button name='botones' value='asignar'>Asignado</button>";
+                                            }
+                                        
                                         }else{
-                                            echo "<button name='botones' value='asignar' disabled='disabled'>Asignado</button>";
+                                            if($datos2["etapa_actual"]==5){
+                                                echo "<button name='botones' value='asignar' disabled='disabled'>Finalizado</button>";
+                                            }else{
+                                                echo "<button name='botones' value='asignar' disabled='disabled'>Asignado</button>";
+                                            }
+
+                                            
                                         }
                                     }else{
                                         echo "<button name='botones' value='asignar' disabled='disabled'>Asignado</button>";

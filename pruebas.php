@@ -105,6 +105,7 @@
             ?>
 <form action="validar-prueba.php" method="post" style="text-align:center;" enctype="multipart/form-data">
      <div class="form-group">
+     <input type="hidden" name="id_incidencia" value="<?php echo $id_incidencia; ?>">
             <label for="Nombre">Titulo:</label>
             <p><?php echo $datos["titulo"]?></p>
        </div>
