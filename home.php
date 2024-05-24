@@ -136,12 +136,12 @@ text-align: center;}
       <header>
     <?php
         if (isset($_SESSION['id'])) {
-            if ($_SESSION["role"] == "Cordinador") {
+            if ($_SESSION["rol"] == "Cordinador") {
                 echo "<a href='trabajadores.php'><input type='submit' value='Registrar'></a>";
                 echo "&nbsp;"; 
                 echo "<a href='cerrar_sesion.php'><input type='submit' value='Cerrar sesión'></a>";
             } else {
-                echo "<a href='cerrar_sesion.php'><input type='submit' value='Registrar'></a>";
+                echo "<a href='cerrar_sesion.php'><input type='submit' value='Cerrar sesión'></a>";
             }
         }else{
             echo "<a href='login.php'><input type='submit' value='Login'></a>";
@@ -159,14 +159,14 @@ text-align: center;}
                 <tr>
                     <td>#343a40</td>
                     <td>Edgar Vivar Najera</td>
-                    <td><button>Asignado</button><button>Ver detalles ></button></td>
+                    <td><form action="asignacion.php" method="get"><button>Asignado</button><button>Ver detalles ></button></form></td>
                 </tr>
             </table>
         </main>
         <br>
         <br>
         <div class="form-group">
-            <center> <a href="agregarIncidencia.php"><button type="submit">Agregar incendencia</button></a><center>
+            <center><button type="submit">Agregar incendencia</button><center>
      </div>
 
         <div class="footer">

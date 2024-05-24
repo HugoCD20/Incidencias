@@ -9,8 +9,9 @@
 
     $datos = [
         "titulo" => $titulo,
-        "evidencias" => $descripcion,
-        "etapa_actual"=>$evidencias
+        "descripcion" => $descripcion,
+        "evidencias"=>$evidencias,
+        "evidencia"=>1
     ];
 
 

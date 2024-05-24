@@ -68,6 +68,23 @@
         td a:hover {
            
         }
+        .logout-button {
+            display: block;
+            width: 50%;
+            padding: 10px;
+            margin: 20px auto 0;
+            background-color: #922B21;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            text-align: center;
+            cursor: pointer;
+        }
+        .logout-button:hover {
+            background-color: #c0392b;
+        }
     </style>
 </head>
 <body>
@@ -76,7 +93,6 @@
     <h1>Técnico Tareas</h1>
     <div class="welcome">
         Bienvenido
-
     </div>
 
     <table>
@@ -84,15 +100,17 @@
             <th>Tareas</th>
         </tr>
         <tr>
-            <td><a href="tareaProceso.php">Tarea 1</a></td>
+            <td><a href="tareaProceso.html">Tarea 1</a></td>
         </tr>
         <tr>
-            <td><a href="tareaProceso.php">Tarea 2</a></td>
+            <td><a href="tareaProceso.html">Tarea 2</a></td>
         </tr>
         <tr>
-            <td><a href="tareaProceso.php">Tarea 3</a></td>
+            <td><a href="tareaProceso.html">Tarea 3</a></td>
         </tr>
     </table>
+
+    <a href="cerrar_sesion.php"><button class="logout-button">Cerrar sesión</button></a>
 </div>
 
 </body>
